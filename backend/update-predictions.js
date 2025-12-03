@@ -50,29 +50,29 @@ async function updatePredictions() {
         
         // update predictions by matching them with actual stats from completed games
         const updateQuery = `
-    UPDATE mp
-    SET 
-        mp.ActualPoints = s.Points, // fill in actual points from stats table
-        mp.ActualRebounds = s.TotalRebounds, // fill in actual rebounds
-        mp.ActualAssists = s.Assists, // fill in actual assists
-        mp.PointsError = ABS(mp.PredictedPoints - s.Points), // calculate how far off we were for points
-        mp.ReboundsError = ABS(mp.PredictedRebounds - s.TotalRebounds), // calculate rebounds error
-        mp.AssistsError = ABS(mp.PredictedAssists - s.Assists), // calculate assists error
-        mp.GameCompleted = 1 // mark this prediction as completed
-    FROM MLPredictions mp
-    JOIN Stats s ON (
-        s.PlayerName = SUBSTRING(mp.PlayerName, CHARINDEX(' ', mp.PlayerName) + 1, 100) + ' ' + 
-                       SUBSTRING(mp.PlayerName, 1, CHARINDEX(' ', mp.PlayerName) - 1)
-    ) // match player names - converting "first last" to "last first" format
-    JOIN Games g ON s.GameId = g.Id // join to games table to check game status
-    WHERE mp.GameCompleted = 0 // only update predictions that haven't been completed yet
-        AND g.Status IN ('FT', 'AOT') // only games that are finished or after overtime
-        AND s.Season = '2025-2026' // only current season stats
-        AND (
-            g.HomeTeam LIKE '%' + mp.OpponentTeam + '%'
-            OR g.AwayTeam LIKE '%' + mp.OpponentTeam + '%'
-        ) // match the opponent team from prediction to actual game
-`;
+            UPDATE mp
+            SET 
+                mp.ActualPoints = s.Points, // fill in actual points from stats table
+                mp.ActualRebounds = s.TotalRebounds, // fill in actual rebounds
+                mp.ActualAssists = s.Assists, // fill in actual assists
+                mp.PointsError = ABS(mp.PredictedPoints - s.Points), // calculate how far off we were for points
+                mp.ReboundsError = ABS(mp.PredictedRebounds - s.TotalRebounds), // calculate rebounds error
+                mp.AssistsError = ABS(mp.PredictedAssists - s.Assists), // calculate assists error
+                mp.GameCompleted = 1 // mark this prediction as completed
+            FROM MLPredictions mp
+            JOIN Stats s ON (
+                s.PlayerName = SUBSTRING(mp.PlayerName, CHARINDEX(' ', mp.PlayerName) + 1, 100) + ' ' + 
+                               SUBSTRING(mp.PlayerName, 1, CHARINDEX(' ', mp.PlayerName) - 1)
+            ) // match player names - converting "first last" to "last first" format
+            JOIN Games g ON s.GameId = g.Id // join to games table to check game status
+            WHERE mp.GameCompleted = 0 // only update predictions that haven't been completed yet
+                AND g.Status IN ('FT', 'AOT') // only games that are finished or after overtime
+                AND s.Season = '2025-2026' // only current season stats
+                AND (
+                    g.HomeTeam LIKE '%' + mp.OpponentTeam + '%'
+                    OR g.AwayTeam LIKE '%' + mp.OpponentTeam + '%'
+                ) // match the opponent team from prediction to actual game
+        `;
         
         // execute the update and get how many rows were affected
         const updateResult = await pool.request().query(updateQuery);
