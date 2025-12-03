@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Sports Projector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class = "container">
+        <div class = "header">
+            <h1>Fantasy Sports Projector</h1>
+            <p>Get AI-powered insights and projections for fantasy lineup decisions</p>
+        </div>
+        <!--where the user types in their questions-->
+        <div class = "query-section">
+            <div class = "query-container">
+                <!--Input box for user queries-->
+                <input type = "text" class = "query-input" id = "queryInput" placeholder = 'Try: "How many points will LeBron score against the Warriors?" or "Durant vs Curry'>
+                <!--Submit button-->
+                <button class = "query-button" id = "queryButton">Go</button>
+            </div>
+        </div>
+        <!--where the results are displayed-->
+        <div class = "response-section">
+            <div class = "response-header">
+                <h2>Projection Results</h2>
+            </div>
+
+            <div class = "response-area" id = "responseArea">
+                <!--indicates that the system is running and analyzing the query/data-->
+                <div class = "loading" id = "loading">Analyzing data</div>
+                <!--where the system output will be shown-->
+                <div id = "responseText">Enter a query above to get started! </div>
+            </div>
+                
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

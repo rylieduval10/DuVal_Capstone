@@ -1,0 +1,198 @@
+/* reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* main page styling with gradient background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #FA8320 0%, #f89d7f 100%); /* orange gradient */
+    min-height: 100vh; /* full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* main content container */
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95); /* slightly transparent white */
+    backdrop-filter: blur(10px); /* blur effect behind container */
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* shadow for depth */
+    padding: 40px;
+    margin-top: 50px;
+}
+
+/* header section styling */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* main title with gradient text */
+.header h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(135deg, #FA8320, #F88158); /* gradient for text */
+    -webkit-background-clip: text; /* clips background to text */
+    -webkit-text-fill-color: transparent; /* makes text transparent to show gradient */
+    background-clip: text;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* subtitle text */
+.header p {
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* query input section */
+.query-section {
+    margin-bottom: 30px;
+}
+
+/* wrapper for input and button positioning */
+.query-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* text input field */
+.query-input {
+    width: 100%;
+    padding: 20px 60px 20px 20px; /* extra padding on right for button */
+    font-size: 1.1rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 15px;
+    outline: none;
+    transition: all 0.3s ease; /* smooth transitions */
+    background: #fff;
+    color: #333;
+}
+
+/* input focus state */
+.query-input:focus {
+    border-color: #FA8320; /* orange border when focused */
+    box-shadow: 0 0 0 3px rgba(250, 131, 32, 0.1); /* glow effect */
+    transform: translateY(-2px); /* slight lift */
+}
+
+/* placeholder text styling */
+.query-input::placeholder {
+    color: #aaa;
+    font-size: medium;
+}
+
+/* submit button positioned inside input */
+.query-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%); /* center vertically */
+    background: linear-gradient(135deg, #FA8320, #F88158);
+    color: white;
+    border: none;
+    width: 65px;
+    height: 44px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* button hover effect */
+.query-button:hover {
+    cursor: pointer;
+    background: linear-gradient(135deg, #e6741c, #df7450); /* darker gradient */
+    transform: translateY(-50%) scale(1.05); /* slight grow */
+    box-shadow: 0 5px 15px rgba(250, 131, 32, 0.3); /* shadow on hover */
+}
+
+/* button click effect */
+.query-button:active {
+    transform: translateY(-50%) scale(0.95); /* slight shrink */
+}
+
+/* response display section */
+.response-section {
+    margin-top: 30px;
+}
+
+/* response section header */
+.response-header {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* response text area */
+.response-area {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 15px;
+    min-height: 200px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
+    transition: all 0.3s ease;
+    white-space: pre-wrap; /* preserve line breaks and spacing */
+}
+
+/* response area when it has content */
+.response-area.has-content {
+    background: #fff;
+    border-color: #FA8320; /* orange border when filled */
+}
+
+/* loading indicator */
+.loading {
+    display: none; /* hidden by default */
+    text-align: center;
+    color: #FA8320;
+    font-style: italic;
+}
+
+/* animated dots for loading */
+.loading::after {
+    content: '';
+    animation: dots 1.5s infinite;
+}
+
+/* keyframes for animated dots */
+@keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}
+
+/* mobile responsive styles */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 20px;
+        padding: 25px;
+    }
+    
+    .header h1 {
+        font-size: 2.2rem; /* smaller title on mobile */
+    }
+    
+    .query-input {
+        font-size: 1rem;
+        padding: 18px 55px 18px 18px;
+    }
+}
