@@ -20,7 +20,7 @@ const dbConfig = {
 };
 
 // api credentials
-const API_KEY = '9f957349706083c644571814dadcbfef';
+const API_KEY = 'YOUR_API_KEY';
 const BASE_URL = 'https://v1.basketball.api-sports.io';
 
 // helper function to log messages with timestamps
