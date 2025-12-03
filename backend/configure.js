@@ -1,3 +1,5 @@
+//configure.js = generates aggregated stats that the ml model needs for predictions
+
 const sql = require('mssql'); //imports mssql library
 
 // database configuration
